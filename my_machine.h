@@ -61,7 +61,7 @@
 //#define ETHERNET_ENABLE         0 // Do NOT enable here, enable in CMakeLists.txt!
 //#define _WIZCHIP_            5500 // Selects WIZnet ethernet breakout connected via SPI.
                                     // Uncomment to enable W5500 chip, default is W5100S. Requires ethernet enabled in CMakeLists.txt.
-//#define WEBUI_ENABLE            3 // Enable ESP3D-WEBUI plugin along with networking and SD card plugins. Requires WiFi enabled.
+#define WEBUI_ENABLE            3 // Enable ESP3D-WEBUI plugin along with networking and SD card plugins. Requires WiFi enabled.
 //#define WEBUI_AUTH_ENABLE       1 // Enable ESP3D-WEBUI authentication.
 //#define WEBUI_INFLASH           0 // Uncomment to store WebUI files on SD card instead of in flash (littlefs).
 //#define SDCARD_ENABLE           2 // Run gcode programs from SD card. Set to 2 to enable YModem upload.
@@ -135,9 +135,9 @@
 //#define MDNS_ENABLE          0 // mDNS daemon. Do NOT enable here, enable in CMakeLists.txt!
 //#define SSDP_ENABLE          1 // SSDP daemon - requires HTTP enabled.
 #if SDCARD_ENABLE || WEBUI_ENABLE
-#define FTP_ENABLE           1 // Ftp daemon - requires SD card enabled.
-//#define HTTP_ENABLE          1 // http daemon - requires SD card enabled.
-//#define WEBDAV_ENABLE        1 // webdav protocol - requires http daemon and SD card enabled.
+//#define FTP_ENABLE           1 // Ftp daemon - requires SD card enabled.
+#define HTTP_ENABLE          1 // http daemon - requires SD card enabled.
+#define WEBDAV_ENABLE        1 // webdav protocol - requires http daemon and SD card enabled.
 #endif
 // The following symbols have the default values as shown, uncomment and change as needed.
 //#define NETWORK_STA_HOSTNAME    "grblHAL"
@@ -155,8 +155,8 @@
 //#define NETWORK_AP_MASK         "255.255.255.0"
 #endif
 //#define NETWORK_FTP_PORT     21
-//#define NETWORK_TELNET_PORT  23
-//#define NETWORK_HTTP_PORT    80
+#define NETWORK_TELNET_PORT  23
+#define NETWORK_HTTP_PORT    80
 #if HTTP_ENABLE
 //#define NETWORK_WEBSOCKET_PORT  81
 #else
