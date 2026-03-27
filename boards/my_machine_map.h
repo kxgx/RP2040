@@ -1,5 +1,5 @@
 /*
-  pd42s1_map.h - Pin mapping for Pico2w (RP2350) with PD42S1 driver
+  my_machine_map.h - Pin mapping for Pico2w (RP2350) with PD42S1 driver
                      Based on user-provided pinout table.
 */
 
