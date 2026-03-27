@@ -176,8 +176,6 @@
   #include "boards/btt_skr_pico_10_map.h"
 #elif defined BOARD_CITOH_CX6000
   #include "boards/citoh_cx6000_map.h"
-#elif defined(BOARD_PD42S1)
-  #include "boards/pd42s1_map.h"
 #elif defined(BOARD_GENERIC_4AXIS)
   #include "boards/generic_map_4axis.h"
 #elif defined(BOARD_GENERIC_8AXIS)
