@@ -118,7 +118,7 @@
 // of axes can be enabled here.
 //#define X_GANGED             1
 //#define X_AUTO_SQUARE        1
-//#define Y_GANGED             1
+#define Y_GANGED             1
 //#define Y_AUTO_SQUARE        1
 //#define Z_GANGED             1
 //#define Z_AUTO_SQUARE        1
