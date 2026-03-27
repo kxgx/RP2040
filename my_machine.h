@@ -34,7 +34,7 @@
 //#define BOARD_CITOH_CX6000    // C.ITOH CX-6000 HPGL plotter
 //#define BOARD_GENERIC_4AXIS
 //#define BOARD_GENERIC_8AXIS
-//#define BOARD_MY_MACHINE      // Add my_machine_map.h before enabling this!
+#define BOARD_PD42S1
 
 // Configuration
 // Uncomment to enable.
@@ -70,7 +70,7 @@
                                     // 2: Mode switching is by the CMD_MPG_MODE_TOGGLE (0x8B) command character.
 //#define KEYPAD_ENABLE           1 // 1: uses a I2C keypad for input.
                                     // 2: uses a serial stream for input. If MPG_ENABLE is set > 0 the serial stream is shared with the MPG.
-//#define DISPLAY_ENABLE          9 // Set to 9 for I2C display protocol, 17 for I2C LED protocol.
+#define DISPLAY_ENABLE          9 // Set to 9 for I2C display protocol, 17 for I2C LED protocol.
 //#define ODOMETER_ENABLE         1 // Odometer plugin.
 //#define PLASMA_ENABLE           1 // Plasma (THC) plugin. To be completed.
 //#define LASER_COOLANT_ENABLE    1 // Laser coolant plugin. To be completed.
@@ -164,4 +164,46 @@
 #endif
 #endif // WIFI_ENABLE
 
+// ============================================================================
+// PD42S1 + B6-6W 激光模块专用配置
+// ============================================================================
+
+// 轴数配置
+#define N_AXIS 4              // 4 轴：X, Y, Z, A
+#define N_ABC_MOTORS 1        // 1 个额外轴 (A 轴)
+
+// 激光/主轴控制
+#ifndef DRIVER_SPINDLE_ENABLE
+#define DRIVER_SPINDLE_ENABLE (SPINDLE_PWM|SPINDLE_ENA)  // 启用 PWM 和使能
+#endif
+
+// 限位开关
+#ifndef LIMITS_ENABLE
+#define LIMITS_ENABLE 1       // 启用硬限位
+#endif
+
+#ifndef HARD_LIMITS_PULLUP
+#define HARD_LIMITS_PULLUP 0  // 常闭开关 (NC)
+#endif
+
+// 用户控制
+#ifndef CONTROL_ENABLE
+#define CONTROL_ENABLE (CONTROL_HALT|CONTROL_FEED_HOLD|CONTROL_CYCLE_START)
+#endif
+
+// I2C 接口
+#ifndef I2C_ENABLE
+#define I2C_ENABLE 1          // 启用 I2C (GP16-17)
+#endif
+
+// 步进脉冲参数
+#ifndef STEP_PULSE_MIN_WIDTH
+#define STEP_PULSE_MIN_WIDTH 5.0f  // 最小脉冲宽度 (微秒)
+#endif
+
+#ifndef STEP_PULSE_LATENCY
+#define STEP_PULSE_LATENCY 1.0f    // 脉冲延迟 (微秒)
+#endif
+
 /**/
+
