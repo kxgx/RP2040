@@ -1,6 +1,7 @@
 /*
   my_machine_map.h - Pin mapping for Pico2w (RP2350) with PD42S1 driver
                      Based on user-provided pinout table.
+                     Enhanced with auxiliary I/O definitions from generic_map_4axis.h.
 */
 
 #ifndef MY_MACHINE_MAP_H
@@ -13,7 +14,6 @@
 // 激光模块 PWM
 // ============================================================================
 #define SPINDLE_PWM_PIN         1          // GP1 输出 PWM 控制激光功率
-#define SPINDLE_PORT            GPIO_OUTPUT
 
 // ============================================================================
 // 步进电机接口（PIO 脉冲 + 独立方向）
@@ -28,7 +28,7 @@
 #define Y_DIRECTION_PIN         3          // GP3 DIR_Y
 #define Z_DIRECTION_PIN         4          // GP4 DIR_Z
 #define A_DIRECTION_PIN         5          // GP5 DIR_A
-#define DIRECTION_OUTMODE       GPIO_SHIFT2   // 方向引脚连续（GP2~GP5）
+// DIRECTION_OUTMODE 已删除（因为方向引脚已单独定义）
 
 // 使能输出（低电平有效，若驱动器不同可通过 $4 取反）
 #define ENABLE_PORT             GPIO_OUTPUT
@@ -56,17 +56,65 @@
 #endif
 
 // ============================================================================
-// 可选扩展（根据需要取消注释）
+// 辅助输出（AUXOUTPUT）—— 用于扩展功能，参考 generic_map_4axis.h
+// 以下引脚均未被占用，可根据需要取消注释
 // ============================================================================
-// 如果需要激光使能信号（M8/M9），可使用冷却引脚
-// #define COOLANT_FLOOD_PIN       14
+// #define AUXOUTPUT0_PIN         14        // GP14 空闲，可作冷却/风扇/其他
+// #define AUXOUTPUT1_PIN         15        // GP15 空闲
+// #define AUXOUTPUT2_PIN         22        // GP22 空闲
+// #define AUXOUTPUT3_PIN         26        // GP26 空闲（ADC可用作数字）
+// #define AUXOUTPUT4_PIN         27        // GP27 空闲
+// #define AUXOUTPUT5_PIN         28        // GP28 空闲
 
-// 如果需要探针对刀
-// #define PROBE_PIN               28
+// ============================================================================
+// 辅助输入（AUXINPUT）—— 用于扩展功能，参考 generic_map_4axis.h
+// 以下引脚均未被占用，可根据需要取消注释
+// ============================================================================
+// #define AUXINPUT0_PIN          14        // GP14
+// #define AUXINPUT1_PIN          15        // GP15
+// #define AUXINPUT2_PIN          22        // GP22
+// #define AUXINPUT3_PIN          26        // GP26
+// #define AUXINPUT4_PIN          27        // GP27
+// #define AUXINPUT5_PIN          28        // GP28
 
-// 如果需要外部按钮（急停、进给保持、循环启动）
-// #define RESET_PIN               26
-// #define FEED_HOLD_PIN           27
-// #define CYCLE_START_PIN         25
+// ============================================================================
+// 冷却液控制（可选，使用 AUXOUTPUT）
+// ============================================================================
+#if COOLANT_ENABLE
+#define COOLANT_PORT            GPIO_OUTPUT
+#endif
+#if COOLANT_ENABLE & COOLANT_FLOOD
+// #define COOLANT_FLOOD_PIN       AUXOUTPUT0_PIN    // 使用 GP14
+#endif
+#if COOLANT_ENABLE & COOLANT_MIST
+// #define COOLANT_MIST_PIN        AUXOUTPUT1_PIN    // 使用 GP15
+#endif
+
+// ============================================================================
+// 用户控制按钮（急停、进给保持、循环启动）
+// ============================================================================
+#if CONTROL_ENABLE & CONTROL_HALT
+// #define RESET_PIN               AUXINPUT4_PIN    // 使用 GP27
+#endif
+#if CONTROL_ENABLE & CONTROL_FEED_HOLD
+// #define FEED_HOLD_PIN           AUXINPUT5_PIN    // 使用 GP28
+#endif
+#if CONTROL_ENABLE & CONTROL_CYCLE_START
+// #define CYCLE_START_PIN         AUXINPUT3_PIN    // 使用 GP26
+#endif
+
+// ============================================================================
+// 探针输入（可选）
+// ============================================================================
+#if PROBE_ENABLE
+// #define PROBE_PIN               AUXINPUT2_PIN    // 使用 GP22
+#endif
+
+// ============================================================================
+// 安全门输入（可选）
+// ============================================================================
+#if SAFETY_DOOR_ENABLE
+// #define SAFETY_DOOR_PIN         AUXINPUT1_PIN    // 使用 GP15
+#endif
 
 #endif // MY_MACHINE_MAP_H
