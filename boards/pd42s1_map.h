@@ -99,72 +99,72 @@
 // ============================================================================
 
 // 可用的辅助输入引脚
-#define AUXINPUT0_PIN           22            // 通用 IO
-#define AUXINPUT1_PIN           28            // 通用 IO/探针备选
+//#define AUXINPUT0_PIN           22            // 通用 IO
+//#define AUXINPUT1_PIN           28            // 通用 IO/探针备选
 
 // 用户控制 (急停、进给保持、循环启动)
-#if CONTROL_ENABLE & CONTROL_HALT
-#define RESET_PIN               26            // 急停/复位按钮
-#endif
+//#if CONTROL_ENABLE & CONTROL_HALT
+//#define RESET_PIN               26            // 急停/复位按钮
+//#endif
 
-#if CONTROL_ENABLE & CONTROL_FEED_HOLD
-#define FEED_HOLD_PIN           27            // 进给保持按钮
-#endif
+//#if CONTROL_ENABLE & CONTROL_FEED_HOLD
+//#define FEED_HOLD_PIN           27            // 进给保持按钮
+//#endif
 
-#if CONTROL_ENABLE & CONTROL_CYCLE_START
-#define CYCLE_START_PIN         25            // 循环启动按钮
-#endif
+//#if CONTROL_ENABLE & CONTROL_CYCLE_START
+//#define CYCLE_START_PIN         25            // 循环启动按钮
+//#endif
 
 // 探针输入
-#if PROBE_ENABLE
-#define PROBE_PIN               28            // GP28 - 探针
-#endif
+//#if PROBE_ENABLE
+//#define PROBE_PIN               28            // GP28 - 探针
+//#endif
 
 // 安全门输入
-#if SAFETY_DOOR_ENABLE
-#define SAFETY_DOOR_PIN         22            // GP22 - 安全门开关
-#endif
+//#if SAFETY_DOOR_ENABLE
+//#define SAFETY_DOOR_PIN         22            // GP22 - 安全门开关
+//#endif
 
 // ============================================================================
 // 冷却液控制 (可选)
 // ============================================================================
-#if COOLANT_ENABLE & COOLANT_FLOOD
-#define COOLANT_FLOOD_PIN       14            // GP14 - 水冷
-#define COOLANT_FLOOD_PORT      GPIO_OUTPUT   // 冷却液端口定义
-#endif
+//#if COOLANT_ENABLE & COOLANT_FLOOD
+//#define COOLANT_FLOOD_PIN       14            // GP14 - 水冷
+//#define COOLANT_FLOOD_PORT      GPIO_OUTPUT   // 冷却液端口定义
+//#endif
 
-#if COOLANT_ENABLE & COOLANT_MIST
-#define COOLANT_MIST_PIN        15            // GP15 - 气雾
-#define COOLANT_MIST_PORT       GPIO_OUTPUT   // 冷却液端口定义
-#endif
+//#if COOLANT_ENABLE & COOLANT_MIST
+//#define COOLANT_MIST_PIN        15            // GP15 - 气雾
+//#define COOLANT_MIST_PORT       GPIO_OUTPUT   // 冷却液端口定义
+//#endif
 
 // ============================================================================
 // SPI 接口 (可选，用于 SD 卡或以太网)
 // ============================================================================
-#if SDCARD_ENABLE || ETHERNET_ENABLE
-#define SPI_PORT                1
-#define SPI_SCK_PIN             0             // GP0
-#define SPI_MOSI_PIN            3             // GP3 (注意：与 DIR_Y 冲突，需禁用)
-#define SPI_MISO_PIN            4             // GP4 (注意：与 DIR_Z 冲突，需禁用)
-#define SPI_CS_PIN              5             // GP5
-#warning "SPI 引脚与方向引脚冲突，请检查配置！"
-#endif
+//#if SDCARD_ENABLE || ETHERNET_ENABLE
+//#define SPI_PORT                1
+//#define SPI_SCK_PIN             0             // GP0
+//#define SPI_MOSI_PIN            3             // GP3 (注意：与 DIR_Y 冲突，需禁用)
+//#define SPI_MISO_PIN            4             // GP4 (注意：与 DIR_Z 冲突，需禁用)
+//#define SPI_CS_PIN              5             // GP5
+//#warning "SPI 引脚与方向引脚冲突，请检查配置！"
+//#endif
 
 // ============================================================================
 // RGB LED (可选)
 // ============================================================================
-#if RGB_LED_ENABLE
-#define NEOPIXELS_PIN           25            // WS2812 RGB LED
-#define NEOPIXELS_NUM           1
-#endif
+//#if RGB_LED_ENABLE
+//#define NEOPIXELS_PIN           25            // WS2812 RGB LED
+//#define NEOPIXELS_NUM           1
+//#endif
 
 // ============================================================================
 // WiFi (Pico W 内置)
 // ============================================================================
-#if WIFI_ENABLE
+//#if WIFI_ENABLE
 // CYW43439 WiFi 芯片已集成在 Pico W 中
 // 无需额外引脚定义
-#endif
+//#endif
 
 // HAS_BOARD_INIT 已移除 - 不需要特殊的板级初始化
 
